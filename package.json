@@ -1,0 +1,12 @@
+{
+  "name": "polyline-coordinates",
+  "version": "1.0.0",
+  "description": "Utility library for getting coordinates from geojson polylines",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["polyline", "coordinates", "distances"],
+  "author": "dongy7 <dongy7@gmail.com> (http://dongy7.github.io/)",
+  "license": "MIT"
+}
