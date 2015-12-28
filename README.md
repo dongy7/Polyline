@@ -1,9 +1,12 @@
 # polyline-coordinates
 Simple utility library for dealing with json polylines
 
+## Installation
+```npm install --save polyline-coordinates```
+
 ## Usage
 ```js
-var Polyline = require('lib/polyline');
+var Polyline = require('polyline-coordinates');
 
 // the polyline needs to be an array of [lat, long] values
 var line = [[0, 0], [0, 100]];
