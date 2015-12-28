@@ -34,9 +34,6 @@ Creates a new polyline instance with the json representation of a polyline.
 #### .getTotalDistMiles()
 Returns the total distance covered by the polyline in miles.
 
-#### .getTotalDistMiles()
-Returns the total distance covered by the polyline in miles.
-
 #### .getTotalDistKm()
 Returns the total distance covered by the polyline in kilometers.
 
