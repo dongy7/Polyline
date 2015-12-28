@@ -4,7 +4,7 @@
   "description": "Utility library for getting coordinates from geojson polylines",
   "main": "lib/polyline.js",
   "scripts": {
-    "test": "mocha tests/test.js"
+    "test": "mocha test/test.js"
   },
   "repository": {
     "type": "git",
