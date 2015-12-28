@@ -15,7 +15,7 @@ var polyline = new Polyline(line);
 polyline.getTotalDist();
 // 100
 
-polyline.getPointAtProp(-0,5);
+polyline.getPointAtProp(-0.5);
 // [-50, 0]
 
 polyline.getPointAtProp(0.5);
