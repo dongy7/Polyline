@@ -6,6 +6,10 @@
   "scripts": {
     "test": "mocha tests/test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dongy7/polyline-coordinates.git"
+  },
   "keywords": [
     "polyline",
     "coordinates",
