@@ -2,16 +2,16 @@
   "name": "polyline-coordinates",
   "version": "1.0.0",
   "description": "Utility library for getting coordinates from geojson polylines",
-  "main": "index.js",
+  "main": "lib/polyline.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/test.js"
   },
   "keywords": [
     "polyline",
     "coordinates",
     "distances"
   ],
-  "author": "dongy7 <dongy7@gmail.com> (http://dongy7.github.io/)",
+  "author": "Dong Yeop Lee <dongy7@gmail.com> (https://github.com/dongy7)",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
