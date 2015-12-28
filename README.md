@@ -31,10 +31,10 @@ polyline.getPointAtProp(1.5);
 #### Polyline(geojson)
 Creates a new polyline instance with the json representation of a polyline.
 
-### .getTotalDistMiles()
+#### .getTotalDistMiles()
 Returns the total distance covered by the polyline in miles.
 
-### .getTotalDistMiles()
+#### .getTotalDistMiles()
 Returns the total distance covered by the polyline in miles.
 
 #### .getTotalDistKm()
