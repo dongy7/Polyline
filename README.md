@@ -1,0 +1,36 @@
+# polyline-coordinates
+Simple utility library for dealing with json polylines
+
+## Usage
+```js
+var Polyline = require('lib/polyline');
+
+// the polyline needs to be an array of [lat, long] values
+var line = [[0, 0], [0, 100]];
+var polyline = new Polyline(line);
+
+polyline.getTotalDist();
+// 100
+
+polyline.getPointAtProp(-0,5);
+// [-50, 0]
+
+polyline.getPointAtProp(0.5);
+// [0, 50]
+
+polyline.getPointAtProp(1.5);
+// [0, 150]
+```
+
+## API
+#### Polyline(geojson)
+Creates a new polyline instance with the json representation of a polyline.
+
+#### .getTotalDist()
+Returns the total distance covered by the polyline
+
+#### .getPointAtProp(prop)
+Returns the coordinates of the point where the proportion of 
+the distance from the starting point and the given point is equal to `prop`.
+For example `.getPointAtProp(0.5)` will return the coordinates of the point
+that is located in the middle of the polyline.
