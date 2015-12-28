@@ -1,4 +1,6 @@
 # polyline-coordinates
+[![Build Status](https://travis-ci.org/dongy7/polyline-coordinates.svg?branch=master)](https://travis-ci.org/dongy7/polyline-coordinates)
+
 Simple utility library for dealing with json polylines
 
 ## Installation
