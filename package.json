@@ -6,7 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["polyline", "coordinates", "distances"],
+  "keywords": [
+    "polyline",
+    "coordinates",
+    "distances"
+  ],
   "author": "dongy7 <dongy7@gmail.com> (http://dongy7.github.io/)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
 }
