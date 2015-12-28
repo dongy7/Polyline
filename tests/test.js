@@ -15,6 +15,14 @@ describe('Polyline', function() {
       var poly = new Polyline([[100, 100], [0, 0]]);
       assert.deepEqual([50, 50], poly.getPointAtProp(0.5));
     });
+    it('should correctly extraplate when the proportion is negative', function() {
+      var poly = new Polyline([[0,0], [100,100]]);
+      assert.deepEqual([-50, -50], poly.getPointAtProp(-0.5));
+    });
+    it('should correctly extraplate when the proportion is over one', function() {
+      var poly = new Polyline([[0,0], [100,100]]);
+      assert.deepEqual([150, 150], poly.getPointAtProp(1.5));
+    });
   });
 
   describe('#getTotalDist()', function() {
