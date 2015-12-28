@@ -38,5 +38,24 @@ describe('Polyline', function() {
       var poly = new Polyline([[0,0], [0,10], [10, 10]]);
       assert.equal(20, poly.getTotalDist());
     });
+    it('should return the same distances for two geojson that are reverse of each other', function() {
+      var a = [35.890810, -79.075041];
+      var b = [40.748765, -73.985806];
+      var polyA = new Polyline([a, b]);
+      var polyB = new Polyline([b, a]);
+      assert.equal(polyA.getTotalDistMiles(), polyB.getTotalDistMiles());
+    });
+    it('should return the correct distnace in miles', function() {
+      var a = [35.890810, -79.075041];
+      var b = [40.748765, -73.985806];
+      var polyA = new Polyline([a, b]);
+      assert.equal(polyA.getTotalDistMiles(), 434.551);
+    });
+    it('should return the correct distnace in km', function() {
+      var a = [35.890810, -79.075041];
+      var b = [40.748765, -73.985806];
+      var polyA = new Polyline([a, b]);
+      assert.equal(polyA.getTotalDistKm(), 699.34);
+    });
   });
 });
