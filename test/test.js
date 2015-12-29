@@ -41,6 +41,18 @@ describe('Polyline', function() {
       var poly = new Polyline(rev);
       assert.deepEqual([50, 50], poly.getPointAtProp(0.5));
     });
+    it('should return the correct point when path is not straight', function() {
+      var poly = new Polyline([[0,0], [20, 0], [20, 20], [0, 20], [0,40], [-20, 40]]);
+      var point =  poly.getPointAtProp(0.5);
+      assert.deepEqual([10, 20], [Math.round(point[0]), Math.round(point[1])]);
+    });
+    it('should return the correct point when path is not straight and reversed', function() {
+      var line = [[0,0], [20, 0], [20, 20], [0, 20], [0,40], [-20, 40]];
+      var rev = line.reverse();
+      var poly = new Polyline(rev);
+      var point =  poly.getPointAtProp(0.5);
+      assert.deepEqual([10, 20], [Math.round(point[0]), Math.round(point[1])]);
+    });
   });
 
   describe('#getTotalDist()', function() {
