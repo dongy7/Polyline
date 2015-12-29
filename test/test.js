@@ -23,19 +23,35 @@ describe('Polyline', function() {
       var poly = new Polyline([[0,0], [0,100]]);
       assert.deepEqual([0, -50], poly.getPointAtProp(-0.5));
     });
+    it('should correctly extraplate when the proportion is an arbitrary negative number', function() {
+      var poly = new Polyline([[0,0], [100,100]]);
+      assert.deepEqual([-150, -150], poly.getPointAtProp(-1.5));
+    });
     it('should correctly extraplate when the proportion is over one', function() {
       var poly = new Polyline([[0,0], [100,100]]);
       assert.deepEqual([150, 150], poly.getPointAtProp(1.5));
     });
-    it('should return correct point when there more than two points', function() {
+    it('should correctly extraplate when the proportion is an arbitrary positive number greater than one', function() {
+      var poly = new Polyline([[0,0], [100,100]]);
+      assert.deepEqual([150, 150], poly.getPointAtProp(1.5));
+    });
+    it('should correctly extraplate negative values for more than two points', function() {
+      var poly = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
+      assert.deepEqual([-50, -50], poly.getPointAtProp(-0.5));
+    });
+    it('should correctly extraplate positive values for more than two points', function() {
+      var poly = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
+      assert.deepEqual([150, 150], poly.getPointAtProp(1.5));
+    });
+    it('should return the correct point when there more than two points', function() {
       var poly = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
       assert.deepEqual([50, 50], poly.getPointAtProp(0.5));
     });
-    it('should return correct point when there more than two points for any point', function() {
+    it('should return the correct point when there more than two points', function() {
       var poly = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
       assert.deepEqual([70,70], poly.getPointAtProp(0.7));
     });
-    it('should return correct point when there more than two points for reverse', function() {
+    it('should return the correct point when there more than two points', function() {
       var line = [[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]];
       var rev = line.reverse();
       var poly = new Polyline(rev);
@@ -46,7 +62,7 @@ describe('Polyline', function() {
       var point =  poly.getPointAtProp(0.5);
       assert.deepEqual([10, 20], [Math.round(point[0]), Math.round(point[1])]);
     });
-    it('should return the correct point when path is not straight and reversed', function() {
+    it('should return the correct point when path is not straight', function() {
       var line = [[0,0], [20, 0], [20, 20], [0, 20], [0,40], [-20, 40]];
       var rev = line.reverse();
       var poly = new Polyline(rev);
