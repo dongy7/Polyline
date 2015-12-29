@@ -1,5 +1,5 @@
 # polyline-coordinates
-[![Build Status](https://travis-ci.org/dongy7/polyline-coordinates.svg?branch=master)](https://travis-ci.org/dongy7/polyline-coordinates)
+[![Build Status](https://travis-ci.org/dongy7/polyline-coordinates.svg?branch=master)](https://travis-ci.org/dongy7/polyline-coordinates) [![npm version](https://badge.fury.io/js/polyline-coordinates.svg)](https://badge.fury.io/js/polyline-coordinates)
 
 Simple utility library for dealing with json polylines
 
