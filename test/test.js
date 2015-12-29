@@ -27,16 +27,26 @@ describe('Polyline', function() {
       var poly = new Polyline([[0,0], [100,100]]);
       assert.deepEqual([150, 150], poly.getPointAtProp(1.5));
     });
+    it('should return correct point when there more than two points', function() {
+      var poly = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
+      assert.deepEqual([50, 50], poly.getPointAtProp(0.5));
+    });
+    it('should return correct point when there more than two points for any point', function() {
+      var poly = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
+      assert.deepEqual([70,70], poly.getPointAtProp(0.7));
+    });
+    it('should return correct point when there more than two points for reverse', function() {
+      var line = [[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]];
+      var rev = line.reverse();
+      var poly = new Polyline(rev);
+      assert.deepEqual([50, 50], poly.getPointAtProp(0.5));
+    });
   });
 
   describe('#getTotalDist()', function() {
     it('should return 0 if there is only one coordinate', function() {
       var poly = new Polyline([[10, 10]]);
-      assert.equal(0, poly.getTotalDist());
-    });
-    it('should return the correct distance if there are more than one coordinate', function() {
-      var poly = new Polyline([[0,0], [0,10], [10, 10]]);
-      assert.equal(20, poly.getTotalDist());
+      assert.equal(0, poly.getTotalDistMiles());
     });
     it('should return the same distances for two geojson that are reverse of each other', function() {
       var a = [35.890810, -79.075041];
