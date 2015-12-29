@@ -1,6 +1,6 @@
 {
   "name": "polyline-coordinates",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Utility library for getting coordinates from geojson polylines",
   "main": "lib/polyline.js",
   "scripts": {
