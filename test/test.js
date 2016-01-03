@@ -100,4 +100,30 @@ describe('Polyline', function() {
       assert.equal(polyA.getTotalDistKm(), 699.34);
     });
   });
+
+  describe('#getPointDist()', function() {
+    it('should return 0 if the two points are identical', function() {
+      var poly = new Polyline([]);
+      assert.equal(0, poly.getPointDist([0,0], [0,0]));
+    });
+    it('should return the correct distance in miles for two non-identical points', function() {
+      var poly = new Polyline([]);
+      var a = [35.890810, -79.075041];
+      var b = [40.748765, -73.985806];
+      assert.equal(434.551, poly.getPointDist(a, b));
+    });
+  });
+
+  describe('#getPointDistKm()', function() {
+    it('should return 0 if the two points are identical', function() {
+      var poly = new Polyline([]);
+      assert.equal(0, poly.getPointDistKm([0,0], [0,0]));
+    });
+    it('should return the correct distance in km for two non-identical points', function() {
+      var poly = new Polyline([]);
+      var a = [35.890810, -79.075041];
+      var b = [40.748765, -73.985806];
+      assert.equal(1.60934*poly.getPointDist(a,b), poly.getPointDistKm(a, b));
+    });
+  });
 });
