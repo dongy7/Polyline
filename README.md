@@ -11,20 +11,20 @@ Simple utility library for dealing with json polylines
 var Polyline = require('polyline-coordinates');
 
 // the polyline needs to be an array of [lat, long] values
-var line = [[0, 0], [0, 100]];
+var line = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
 var polyline = new Polyline(line);
 
 polyline.getTotalDist();
 // 100
 
-polyline.getPointAtProp(-0.5);
-// [-50, 0]
-
 polyline.getPointAtProp(0.5);
-// [0, 50]
+// [50, 50]
 
-polyline.getPointAtProp(1.5);
-// [0, 150]
+polyline.getPointAtProp(0.7);
+// [70, 70]
+
+polyline.getPointAtProp(1.0);
+// [100, 100]
 ```
 
 ## API
@@ -42,3 +42,9 @@ Returns the coordinates of the point where the proportion of
 the distance from the starting point and the given point is equal to `prop`.
 For example `.getPointAtProp(0.5)` will return the coordinates of the point
 that is located in the middle of the polyline.
+
+#### .getPointDist(a, b)
+Returns the distance between two [lat, lang] points in miles.
+
+#### .getPointDistKm(a, b)
+Returns the distance between two [lat, lang] points in kilometers.
