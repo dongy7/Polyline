@@ -52,6 +52,10 @@ describe('Polyline', function() {
       assert.deepEqual([70,70], poly.getPointAtProp(0.7));
     });
     it('should return the correct point when there more than two points', function() {
+      var poly = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
+      assert.deepEqual([100, 100], poly.getPointAtProp(1));
+    });
+    it('should return the correct point when there more than two points', function() {
       var line = [[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]];
       var rev = line.reverse();
       var poly = new Polyline(rev);
