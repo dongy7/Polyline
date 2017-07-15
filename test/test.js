@@ -22,3 +22,11 @@ test('gets the distance in miles between two coordinates', () => {
     utils.getMileDist([37.7749, 122.4194], [34.0522, 118.2437])
   ).toMatchSnapshot()
 })
+
+test('builds polyline correctly', () => {
+  expect(utils.buildPolyline([[0, 0]])).toMatchSnapshot()
+  expect(utils.buildPolyline([[0, 0], [0, 5]])).toMatchSnapshot()
+  expect(
+    utils.buildPolyline([[0, 0], [2, 2], [4, 4], [6, 6]])
+  ).toMatchSnapshot()
+})

@@ -67,7 +67,7 @@ const getPolylineDistance = (
   }, 0)
 
 const buildPolyline = (geojson: Line): Polyline => {
-  if (geojson.length === 0) {
+  if (geojson.length === 1) {
     const [start] = geojson
     return {
       segments: [{ start, end: start, mileDistance: 0, euclideanDistance: 0 }],
