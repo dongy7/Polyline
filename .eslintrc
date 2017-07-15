@@ -1,7 +1,10 @@
 {
-  "extends": ["airbnb/base", "prettier"],
-  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "extends": ["airbnb/base"],
+  "plugins": ["flowtype"],
   "rules": {
-    "prettier/prettier": "error"
+    "semi": "off",
+    "no-mixed-operators": "off",
+    "comma-dangle": "off"
   }
 }
