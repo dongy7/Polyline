@@ -21,6 +21,21 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-preset-flow": "^6.23.0"
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.2.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.1.0",
+    "prettier": "^1.5.3"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "useTabs": false,
+    "tabWidth": 2
   }
 }
