@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gets the distance in miles between two coordinates 1`] = `347.618`;
+
+exports[`gets the euclidean distance between two points 1`] = `4.242640687119285`;

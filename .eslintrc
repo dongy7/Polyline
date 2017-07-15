@@ -1,10 +1,13 @@
 {
   "parser": "babel-eslint",
   "extends": ["airbnb/base"],
-  "plugins": ["flowtype"],
+  "plugins": ["jest", "flowtype"],
   "rules": {
     "semi": "off",
     "no-mixed-operators": "off",
     "comma-dangle": "off"
+  },
+  "env": {
+    "jest/globals": true
   }
 }

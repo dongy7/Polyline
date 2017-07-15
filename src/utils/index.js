@@ -44,9 +44,10 @@ const getMileDist: DistFunc = (start: Coordinate, end: Coordinate) => {
   const longitudeDelta = endLongitude - startLongitude
   const a =
     square(Math.sin(latitudeDelta / 2)) +
-    Math.cos(startLatitude) * Math.cos(endLatitude) +
-    square(Math.sin(longitudeDelta / 2))
-  const c = Math.atan2(Math.sqrt(a), Math.sqrt(1 - 1))
+    Math.cos(startLatitude) *
+      Math.cos(endLatitude) *
+      square(Math.sin(longitudeDelta / 2))
+  const c = Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)) * 2
   return round(earthRadius * c)
 }
 
@@ -99,6 +100,7 @@ const buildPolyline = (geojson: Line): Polyline => {
 
 module.exports = {
   round,
+  square,
   getEuclideanDist,
   degreeToRad,
   milesToKm,
