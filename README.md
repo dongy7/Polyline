@@ -17,7 +17,7 @@ npm install --save polyline-coordinates
 const Polyline = require('polyline-coordinates');
 
 // the polyline needs to be an array of [latitude, longitude] values
-const polyline = new Polyline([[34.028337, -118.259954], [37.773566, -122.412786]])
+const polyline = Polyline.createLine([[34.028337, -118.259954], [37.773566, -122.412786]])
 
 polyline.getLengthInMiles()
 // 347.618 miles
@@ -31,8 +31,14 @@ polyline.getPointCovering(0.5);
 
 ## API
 
-#### Polyline(geojson)
+#### Polyline.createLine(geojson)
 Creates a new polyline instance with the json representation of a polyline.
+
+#### Polyline.getDistanceBetweenPoints(start, end)
+Returns the distance in miles between two coordinates.
+
+#### Polyline.getDistanceBetweenPointsKm(start, end)
+Returns the distance in kilometers between two coordinates.
 
 #### .getLengthInMiles()
 Returns the total distance covered by the polyline in miles.
@@ -46,9 +52,3 @@ polyline specified.
 
 For example `.getPointCovering(0.5)` will return the coordinates of the point
 that is located in the middle of the polyline.
-
-#### Polyline.getDistanceBetweenPoints(start, end)
-Returns the distance in miles between two coordinates.
-
-#### Polyline.getDistanceBetweenPointsKm(start, end)
-Returns the distance in kilometers between two coordinates.
