@@ -150,6 +150,14 @@ Array [
 ]
 `;
 
+exports[`gets the distance between two points in kilometers 1`] = `559.95536894`;
+
+exports[`gets the distance between two points in miles 1`] = `347.941`;
+
 exports[`gets the distance in miles between two coordinates 1`] = `347.618`;
 
 exports[`gets the euclidean distance between two points 1`] = `4.242640687119285`;
+
+exports[`gets the length of the polyline in kilometers 1`] = `559.43555212`;
+
+exports[`gets the length of the polyline in miles 1`] = `347.618`;

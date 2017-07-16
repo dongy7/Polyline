@@ -36,9 +36,19 @@ test('builds polyline correctly', () => {
   expect(buildPolyline([[0, 0], [2, 2], [4, 4], [6, 6]])).toMatchSnapshot()
 })
 
+test('gets the length of the polyline in miles', () => {
+  const polyline = new Polyline([[37.7749, 122.4194], [34.0522, 118.2437]])
+  expect(polyline.getLengthInMiles()).toMatchSnapshot()
+})
+
+test('gets the length of the polyline in kilometers', () => {
+  const polyline = new Polyline([[37.7749, 122.4194], [34.0522, 118.2437]])
+  expect(polyline.getLengthInKm()).toMatchSnapshot()
+})
+
 test('computes the midpoint of the polyline', () => {
   const polyline = new Polyline([[37.7749, 122.4194], [34.0522, 118.2437]])
-  const midpoint = polyline.getPointAtProp(0.5)
+  const midpoint = polyline.getPointCovering(0.5)
   expect(midpoint).toMatchSnapshot()
 })
 
@@ -48,9 +58,9 @@ test('computes arbitrary point of polyline', () => {
     [37.773566, -122.412786],
   ])
 
-  expect(polyline.getPointAtProp(0.25)).toMatchSnapshot()
-  expect(polyline.getPointAtProp(0.4)).toMatchSnapshot()
-  expect(polyline.getPointAtProp(0.8)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.25)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.4)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.8)).toMatchSnapshot()
 })
 
 test('computes arbitray point of polyline with more than 2 segmenrs', () => {
@@ -60,9 +70,27 @@ test('computes arbitray point of polyline with more than 2 segmenrs', () => {
     [37.773566, -122.412786],
   ])
 
-  expect(polyline.getPointAtProp(0.25)).toMatchSnapshot()
-  expect(polyline.getPointAtProp(0.4)).toMatchSnapshot()
-  expect(polyline.getPointAtProp(0.8)).toMatchSnapshot()
-  expect(polyline.getPointAtProp(0.9)).toMatchSnapshot()
-  expect(polyline.getPointAtProp(0.95)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.25)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.4)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.8)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.9)).toMatchSnapshot()
+  expect(polyline.getPointCovering(0.95)).toMatchSnapshot()
+})
+
+test('gets the distance between two points in miles', () => {
+  expect(
+    Polyline.getDistanceBetweenPoints(
+      [34.028337, -118.259954],
+      [37.773566, -122.412786]
+    )
+  ).toMatchSnapshot()
+})
+
+test('gets the distance between two points in kilometers', () => {
+  expect(
+    Polyline.getDistanceBetweenPointsKm(
+      [34.028337, -118.259954],
+      [37.773566, -122.412786]
+    )
+  ).toMatchSnapshot()
 })
