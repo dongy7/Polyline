@@ -1,6 +1,6 @@
 {
   "name": "polyline-coordinates",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Utility library for getting coordinates from geojson polylines",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
@@ -21,7 +21,9 @@
       "transform-runtime"
     ]
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dongy7/polyline-coordinates.git"
