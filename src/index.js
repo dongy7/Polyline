@@ -19,6 +19,10 @@ class Polyline {
     return linearSearcher(this.polyline, prop)
   }
 
+  getPointCovering(percent: number) {
+    return this.getPointAtProp(percent)
+  }
+
   static getDistanceBetweenPoints(start: Coordinate, end: Coordinate) {
     return getMileDist(start, end)
   }

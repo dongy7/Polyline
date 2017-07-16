@@ -48,3 +48,17 @@ test('computes arbitrary point of polyline', () => {
   expect(polyline.getPointAtProp(0.4)).toMatchSnapshot()
   expect(polyline.getPointAtProp(0.8)).toMatchSnapshot()
 })
+
+test('computes arbitray point of polyline with more than 2 segmenrs', () => {
+  const polyline = new Polyline([
+    [34.028337, -118.259954],
+    [37.334748, -121.853123],
+    [37.773566, -122.412786],
+  ])
+
+  expect(polyline.getPointAtProp(0.25)).toMatchSnapshot()
+  expect(polyline.getPointAtProp(0.4)).toMatchSnapshot()
+  expect(polyline.getPointAtProp(0.8)).toMatchSnapshot()
+  expect(polyline.getPointAtProp(0.9)).toMatchSnapshot()
+  expect(polyline.getPointAtProp(0.95)).toMatchSnapshot()
+})

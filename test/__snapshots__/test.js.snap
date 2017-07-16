@@ -108,6 +108,41 @@ Array [
 ]
 `;
 
+exports[`computes arbitray point of polyline with more than 2 segmenrs 1`] = `
+Array [
+  34.97192068832092,
+  -119.2853726965203,
+]
+`;
+
+exports[`computes arbitray point of polyline with more than 2 segmenrs 2`] = `
+Array [
+  35.538070901313475,
+  -119.90062391443249,
+]
+`;
+
+exports[`computes arbitray point of polyline with more than 2 segmenrs 3`] = `
+Array [
+  37.04780480262695,
+  -121.54129382886498,
+]
+`;
+
+exports[`computes arbitray point of polyline with more than 2 segmenrs 4`] = `
+Array [
+  37.41960960942491,
+  -121.96135443744234,
+]
+`;
+
+exports[`computes arbitray point of polyline with more than 2 segmenrs 5`] = `
+Array [
+  37.596587804712456,
+  -122.18707021872116,
+]
+`;
+
 exports[`computes the midpoint of the polyline 1`] = `
 Array [
   35.91355,
