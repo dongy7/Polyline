@@ -1,6 +1,6 @@
 {
   "name": "polyline-coordinates",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Utility library for getting coordinates from geojson polylines",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.es.js",
