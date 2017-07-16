@@ -1,4 +1,4 @@
-import Polyline from '../src'
+import Polyline from '../src' // eslint-disable-line import/no-named-as-default
 import {
   square,
   round,
