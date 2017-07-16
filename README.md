@@ -27,7 +27,7 @@ polyline.getPointCovering(1.0);
 #### Polyline(geojson)
 Creates a new polyline instance with the json representation of a polyline.
 
-####getLengthInMiles()
+#### getLengthInMiles()
 Returns the total distance covered by the polyline in miles.
 
 #### .getLengthInKm()
