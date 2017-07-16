@@ -5,6 +5,8 @@ import {
   getEuclideanDist,
   getMileDist,
   buildPolyline,
+  linearSearcher,
+  binarySearcher,
 } from '../src/utils'
 
 test('squares number correctly', () => {
@@ -102,4 +104,18 @@ test('gets the distance between two points in kilometers', () => {
       [37.773566, -122.412786]
     )
   ).toMatchSnapshot()
+})
+
+test('binary searcher should give same result as linear searcher', () => {
+  const polyline = buildPolyline([
+    [34.028337, -118.259954],
+    [37.334748, -121.853123],
+    [37.773566, -122.412786],
+  ])
+
+  expect(linearSearcher(polyline, 0.25)).toEqual(binarySearcher(polyline, 0.25))
+  expect(linearSearcher(polyline, 0.5)).toEqual(binarySearcher(polyline, 0.5))
+  expect(linearSearcher(polyline, 0.75)).toEqual(binarySearcher(polyline, 0.75))
+  expect(linearSearcher(polyline, 0.9)).toEqual(binarySearcher(polyline, 0.9))
+  expect(linearSearcher(polyline, 1.0)).toEqual(binarySearcher(polyline, 1.0))
 })

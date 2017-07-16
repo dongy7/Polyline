@@ -1,5 +1,5 @@
 import type { Coordinate, Line } from './utils'
-import { buildPolyline, milesToKm, getMileDist, linearSearcher } from './utils'
+import { buildPolyline, milesToKm, getMileDist, binarySearcher } from './utils'
 
 export class Polyline {
   constructor(geojson: Line) {
@@ -16,7 +16,7 @@ export class Polyline {
   }
 
   getPointCovering(percent: number) {
-    return linearSearcher(this.polyline, percent)
+    return binarySearcher(this.polyline, percent)
   }
 }
 

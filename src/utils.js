@@ -153,3 +153,36 @@ export const linearSearcher: Searcher = (
     percentRemaining
   )
 }
+
+export const binarySearcher: Searcher = (
+  polyline: Polyline,
+  percent: number
+): Coordinate => {
+  const { segments, mileLength } = polyline
+  let min = 0
+  let max = segments.length - 1
+  let segment = segments[max]
+
+  while (min !== max) {
+    const mid = Math.floor((min + max) / 2)
+    segment = segments[mid]
+
+    const { accumulatedPercentCovered } = segment
+    if (accumulatedPercentCovered < percent) {
+      min = mid + 1
+    } else {
+      max = mid
+    }
+  }
+
+  segment = segments[min]
+  const prevAccumulatedPercent =
+    max > 0 ? segments[max - 1].accumulatedPercentCovered : 0
+  const percentRemaining = percent - prevAccumulatedPercent
+
+  return getInterpolatedPoint(
+    segment,
+    segment.mileDistance / mileLength,
+    percentRemaining
+  )
+}

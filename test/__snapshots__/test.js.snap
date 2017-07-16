@@ -6,6 +6,7 @@ Object {
   "mileLength": 0,
   "segments": Array [
     Object {
+      "accumulatedPercentCovered": 1,
       "end": Array [
         0,
         0,
@@ -28,6 +29,7 @@ Object {
   "mileLength": 345.662,
   "segments": Array [
     Object {
+      "accumulatedPercentCovered": 1,
       "end": Array [
         0,
         5,
@@ -50,6 +52,7 @@ Object {
   "mileLength": 586.072,
   "segments": Array [
     Object {
+      "accumulatedPercentCovered": 0.33360406229951267,
       "end": Array [
         2,
         2,
@@ -63,26 +66,28 @@ Object {
       ],
     },
     Object {
+      "accumulatedPercentCovered": 0.6670050778743909,
       "end": Array [
         4,
         4,
       ],
       "euclideanDistance": 2.8284271247461903,
       "mileDistance": 195.397,
-      "percentCovered": 0.6670050778743909,
+      "percentCovered": 0.33340101557487817,
       "start": Array [
         2,
         2,
       ],
     },
     Object {
+      "accumulatedPercentCovered": 1,
       "end": Array [
         6,
         6,
       ],
       "euclideanDistance": 2.8284271247461903,
       "mileDistance": 195.159,
-      "percentCovered": 1,
+      "percentCovered": 0.3329949221256091,
       "start": Array [
         4,
         4,
