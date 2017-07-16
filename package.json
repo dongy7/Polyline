@@ -12,7 +12,7 @@
     "lint": "eslint src test"
   },
   "files": [
-    "typings",
+    "index.d.ts",
     "dist/index.es.js",
     "dist/index.es.map.js",
     "dist/index.js",
@@ -21,14 +21,8 @@
     "dist/package.json"
   ],
   "babel": {
-    "presets": [
-      "latest",
-      "stage-0",
-      "flow"
-    ],
-    "plugins": [
-      "transform-runtime"
-    ]
+    "presets": ["latest", "stage-0", "flow"],
+    "plugins": ["transform-runtime"]
   },
   "jest": {
     "coverageDirectory": "./coverage/",
@@ -38,11 +32,7 @@
     "type": "git",
     "url": "https://github.com/dongy7/polyline-coordinates.git"
   },
-  "keywords": [
-    "polyline",
-    "coordinates",
-    "distances"
-  ],
+  "keywords": ["polyline", "coordinates", "distances"],
   "author": "Dong Yeop Lee <dongy7@gmail.com> (https://github.com/dongy7)",
   "license": "MIT",
   "dependencies": {
