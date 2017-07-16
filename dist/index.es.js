@@ -159,20 +159,28 @@ var Polyline = function () {
     value: function getPointCovering(percent) {
       return linearSearcher(this.polyline, percent);
     }
-  }], [{
-    key: 'getDistanceBetweenPoints',
-    value: function getDistanceBetweenPoints(start, end) {
-      return getMileDist(start, end);
-    }
-  }, {
-    key: 'getDistanceBetweenPointsKm',
-    value: function getDistanceBetweenPointsKm(start, end) {
-      return milesToKm(Polyline.getDistanceBetweenPoints(start, end));
-    }
   }]);
 
   return Polyline;
 }();
 
-export default Polyline;
+var createLine = function createLine(geojson) {
+  return new Polyline(geojson);
+};
+
+var getDistanceBetweenPoints = function getDistanceBetweenPoints(start, end) {
+  return getMileDist(start, end);
+};
+
+var getDistanceBetweenPointsKm = function getDistanceBetweenPointsKm(start, end) {
+  return milesToKm(getDistanceBetweenPoints(start, end));
+};
+
+var index = {
+  createLine: createLine,
+  getDistanceBetweenPoints: getDistanceBetweenPoints,
+  getDistanceBetweenPointsKm: getDistanceBetweenPointsKm
+};
+
+export { Polyline };export default index;
 //# sourceMappingURL=index.es.js.map

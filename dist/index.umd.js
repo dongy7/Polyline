@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('babel-runtime/helpers/classCallCheck'), require('babel-runtime/helpers/createClass'), require('babel-runtime/helpers/slicedToArray')) :
-	typeof define === 'function' && define.amd ? define(['babel-runtime/helpers/classCallCheck', 'babel-runtime/helpers/createClass', 'babel-runtime/helpers/slicedToArray'], factory) :
-	(global['polyline-coordinates'] = factory(global._classCallCheck,global._createClass,global._slicedToArray));
-}(this, (function (_classCallCheck,_createClass,_slicedToArray) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('babel-runtime/helpers/classCallCheck'), require('babel-runtime/helpers/createClass'), require('babel-runtime/helpers/slicedToArray')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'babel-runtime/helpers/classCallCheck', 'babel-runtime/helpers/createClass', 'babel-runtime/helpers/slicedToArray'], factory) :
+	(factory((global['polyline-coordinates'] = {}),global._classCallCheck,global._createClass,global._slicedToArray));
+}(this, (function (exports,_classCallCheck,_createClass,_slicedToArray) { 'use strict';
 
 _classCallCheck = _classCallCheck && _classCallCheck.hasOwnProperty('default') ? _classCallCheck['default'] : _classCallCheck;
 _createClass = _createClass && _createClass.hasOwnProperty('default') ? _createClass['default'] : _createClass;
@@ -165,22 +165,33 @@ var Polyline = function () {
     value: function getPointCovering(percent) {
       return linearSearcher(this.polyline, percent);
     }
-  }], [{
-    key: 'getDistanceBetweenPoints',
-    value: function getDistanceBetweenPoints(start, end) {
-      return getMileDist(start, end);
-    }
-  }, {
-    key: 'getDistanceBetweenPointsKm',
-    value: function getDistanceBetweenPointsKm(start, end) {
-      return milesToKm(Polyline.getDistanceBetweenPoints(start, end));
-    }
   }]);
 
   return Polyline;
 }();
 
-return Polyline;
+var createLine = function createLine(geojson) {
+  return new Polyline(geojson);
+};
+
+var getDistanceBetweenPoints = function getDistanceBetweenPoints(start, end) {
+  return getMileDist(start, end);
+};
+
+var getDistanceBetweenPointsKm = function getDistanceBetweenPointsKm(start, end) {
+  return milesToKm(getDistanceBetweenPoints(start, end));
+};
+
+var index = {
+  createLine: createLine,
+  getDistanceBetweenPoints: getDistanceBetweenPoints,
+  getDistanceBetweenPointsKm: getDistanceBetweenPointsKm
+};
+
+exports.Polyline = Polyline;
+exports['default'] = index;
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 //# sourceMappingURL=index.umd.js.map
