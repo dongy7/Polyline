@@ -1,18 +1,28 @@
 // @flow
 
-type Coordinate = [number, number]
-type Line = Array<Coordinate>
-type DistFunc = (start: Coordinate, end: Coordinate) => number
-type Segment = {
+export type Coordinate = [number, number]
+export type Line = Array<Coordinate>
+export type DistFunc = (start: Coordinate, end: Coordinate) => number
+export type Segment = {
   start: Coordinate,
   end: Coordinate,
   mileDistance: number,
   euclideanDistance: number,
 }
-type Polyline = {
+export type Polyline = {
   segments: Array<Segment>,
   euclideanLength: number,
   mileLength: number,
+}
+export type Searcher = (polyline: Polyline, percent: number) => Coordinate
+export type CartesianPoint = {
+  x: number,
+  y: number,
+  z: number,
+}
+export type CartesianPair = {
+  start: CartesianPoint,
+  end: CartesianPoint,
 }
 
 // kilometers per mile
@@ -98,6 +108,55 @@ const buildPolyline = (geojson: Line): Polyline => {
   return polyline
 }
 
+const getInterpolatedPoint = (
+  segment: Segment,
+  segmentPercentage: number,
+  offset: number
+): Coordinate => {
+  const { start, end } = segment
+
+  const offsetProportion = offset / segmentPercentage
+
+  const [startLat, startLong] = start
+  const [endLat, endLong] = end
+  const deltaX = Math.abs(endLat - startLat) * offsetProportion
+  const deltaY = Math.abs(endLong - startLong) * offsetProportion
+
+  const offsetX = startLat < endLat ? deltaX : -deltaX
+  const offsetY = startLong < endLong ? deltaY : -deltaY
+
+  return [startLat + offsetX, startLong + offsetY]
+}
+
+const linearSearcher: Searcher = (
+  polyline: Polyline,
+  percent: number
+): Coordinate => {
+  const { segments, mileLength } = polyline
+  let distanceCovered = 0
+  let percentRemaining = percent
+  let segment = segments[segments.length - 1]
+  let currentPercent = 0
+
+  for (let i = 0; i < segments.length; i += 1) {
+    distanceCovered += segments[i].mileDistance
+    currentPercent = distanceCovered / mileLength
+
+    if (currentPercent >= percent) {
+      segment = segments[i]
+      break
+    }
+
+    percentRemaining -= currentPercent
+  }
+
+  return getInterpolatedPoint(
+    segment,
+    segment.mileDistance / mileLength,
+    percentRemaining
+  )
+}
+
 module.exports = {
   round,
   square,
@@ -107,4 +166,5 @@ module.exports = {
   getPolylineDistance,
   getMileDist,
   buildPolyline,
+  linearSearcher,
 }

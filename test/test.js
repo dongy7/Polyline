@@ -1,4 +1,5 @@
-const utils = require('../src/utils')
+import Polyline from '../src'
+import utils from '../src/utils'
 
 test('squares number correctly', () => {
   expect(utils.square(2)).toBe(4)
@@ -29,4 +30,21 @@ test('builds polyline correctly', () => {
   expect(
     utils.buildPolyline([[0, 0], [2, 2], [4, 4], [6, 6]])
   ).toMatchSnapshot()
+})
+
+test('computes the midpoint of the polyline', () => {
+  const polyline = new Polyline([[37.7749, 122.4194], [34.0522, 118.2437]])
+  const midpoint = polyline.getPointAtProp(0.5)
+  expect(midpoint).toMatchSnapshot()
+})
+
+test('computes arbitrary point of polyline', () => {
+  const polyline = new Polyline([
+    [34.028337, -118.259954],
+    [37.773566, -122.412786],
+  ])
+
+  expect(polyline.getPointAtProp(0.25)).toMatchSnapshot()
+  expect(polyline.getPointAtProp(0.4)).toMatchSnapshot()
+  expect(polyline.getPointAtProp(0.8)).toMatchSnapshot()
 })

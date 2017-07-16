@@ -87,6 +87,34 @@ Object {
 }
 `;
 
+exports[`computes arbitrary point of polyline 1`] = `
+Array [
+  34.96464425,
+  -119.29816199999999,
+]
+`;
+
+exports[`computes arbitrary point of polyline 2`] = `
+Array [
+  35.5264286,
+  -119.9210868,
+]
+`;
+
+exports[`computes arbitrary point of polyline 3`] = `
+Array [
+  37.024520200000005,
+  -121.5822196,
+]
+`;
+
+exports[`computes the midpoint of the polyline 1`] = `
+Array [
+  35.91355,
+  120.33155,
+]
+`;
+
 exports[`gets the distance in miles between two coordinates 1`] = `347.618`;
 
 exports[`gets the euclidean distance between two points 1`] = `4.242640687119285`;
