@@ -8,6 +8,8 @@ export type Segment = {
   end: Coordinate,
   mileDistance: number,
   euclideanDistance: number,
+  percentCovered: number,
+  accumulatedPercentCovered: number,
 }
 export type Polyline = {
   segments: Array<Segment>,
@@ -58,7 +60,16 @@ export const buildPolyline = (geojson: Line): Polyline => {
   if (geojson.length === 1) {
     const [start] = geojson
     return {
-      segments: [{ start, end: start, mileDistance: 0, euclideanDistance: 0 }],
+      segments: [
+        {
+          start,
+          end: start,
+          mileDistance: 0,
+          euclideanDistance: 0,
+          percentCovered: 1,
+          accumulatedPercentCovered: 1,
+        },
+      ],
       mileLength: 0,
       euclideanLength: 0,
     }
@@ -77,11 +88,22 @@ export const buildPolyline = (geojson: Line): Polyline => {
       end,
       mileDistance: mileDist,
       euclideanDistance: euclideanDist,
+      percentCovered: 0,
+      accumulatedPercentCovered: 0,
     })
 
     polyline.euclideanLength += euclideanDist
     polyline.mileLength += mileDist
   }
+
+  let distanceCovered = 0
+  polyline.segments.forEach((segment, index) => {
+    const { mileDistance } = segment
+    distanceCovered += mileDistance
+    polyline.segments[index].percentCovered = mileDistance / polyline.mileLength
+    polyline.segments[index].accumulatedPercentCovered =
+      distanceCovered / polyline.mileLength
+  })
 
   return polyline
 }
@@ -111,21 +133,18 @@ export const linearSearcher: Searcher = (
   percent: number
 ): Coordinate => {
   const { segments, mileLength } = polyline
-  let distanceCovered = 0
-  let percentRemaining = percent
+
   let segment = segments[segments.length - 1]
-  let currentPercent = 0
+  let percentRemaining = percent
 
   for (let i = 0; i < segments.length; i += 1) {
-    distanceCovered += segments[i].mileDistance
-    currentPercent = distanceCovered / mileLength
-
-    if (currentPercent >= percent) {
+    const { percentCovered, accumulatedPercentCovered } = segments[i]
+    if (accumulatedPercentCovered >= percent) {
       segment = segments[i]
       break
     }
 
-    percentRemaining -= currentPercent
+    percentRemaining -= percentCovered
   }
 
   return getInterpolatedPoint(
