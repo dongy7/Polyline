@@ -21,9 +21,6 @@
       "transform-runtime"
     ]
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dongy7/polyline-coordinates.git"
