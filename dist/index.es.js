@@ -60,7 +60,14 @@ var buildPolyline = function buildPolyline(geojson) {
         _start = _geojson[0];
 
     return {
-      segments: [{ start: _start, end: _start, mileDistance: 0, euclideanDistance: 0 }],
+      segments: [{
+        start: _start,
+        end: _start,
+        mileDistance: 0,
+        euclideanDistance: 0,
+        percentCovered: 1,
+        accumulatedPercentCovered: 1
+      }],
       mileLength: 0,
       euclideanLength: 0
     };
@@ -78,12 +85,23 @@ var buildPolyline = function buildPolyline(geojson) {
       start: _start2,
       end: _end,
       mileDistance: mileDist,
-      euclideanDistance: euclideanDist
+      euclideanDistance: euclideanDist,
+      percentCovered: 0,
+      accumulatedPercentCovered: 0
     });
 
     polyline.euclideanLength += euclideanDist;
     polyline.mileLength += mileDist;
   }
+
+  var distanceCovered = 0;
+  polyline.segments.forEach(function (segment, index) {
+    var mileDistance = segment.mileDistance;
+
+    distanceCovered += mileDistance;
+    polyline.segments[index].percentCovered = mileDistance / polyline.mileLength;
+    polyline.segments[index].accumulatedPercentCovered = distanceCovered / polyline.mileLength;
+  });
 
   return polyline;
 };
@@ -112,26 +130,33 @@ var getInterpolatedPoint = function getInterpolatedPoint(segment, segmentPercent
   return [startLat + offsetX, startLong + offsetY];
 };
 
-var linearSearcher = function linearSearcher(polyline, percent) {
+
+
+var binarySearcher = function binarySearcher(polyline, percent) {
   var segments = polyline.segments,
       mileLength = polyline.mileLength;
 
-  var distanceCovered = 0;
-  var percentRemaining = percent;
-  var segment = segments[segments.length - 1];
-  var currentPercent = 0;
+  var min = 0;
+  var max = segments.length - 1;
+  var segment = segments[max];
 
-  for (var i = 0; i < segments.length; i += 1) {
-    distanceCovered += segments[i].mileDistance;
-    currentPercent = distanceCovered / mileLength;
+  while (min !== max) {
+    var mid = Math.floor((min + max) / 2);
+    segment = segments[mid];
 
-    if (currentPercent >= percent) {
-      segment = segments[i];
-      break;
+    var _segment = segment,
+        _accumulatedPercentCovered2 = _segment.accumulatedPercentCovered;
+
+    if (_accumulatedPercentCovered2 < percent) {
+      min = mid + 1;
+    } else {
+      max = mid;
     }
-
-    percentRemaining -= currentPercent;
   }
+
+  segment = segments[min];
+  var prevAccumulatedPercent = max > 0 ? segments[max - 1].accumulatedPercentCovered : 0;
+  var percentRemaining = percent - prevAccumulatedPercent;
 
   return getInterpolatedPoint(segment, segment.mileDistance / mileLength, percentRemaining);
 };
@@ -157,7 +182,7 @@ var Polyline = function () {
   }, {
     key: 'getPointCovering',
     value: function getPointCovering(percent) {
-      return linearSearcher(this.polyline, percent);
+      return binarySearcher(this.polyline, percent);
     }
   }]);
 
