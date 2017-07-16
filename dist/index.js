@@ -58,8 +58,6 @@ var milesToKm = function milesToKm(mile) {
   return mile * kiloPerMile;
 };
 
-
-
 var buildPolyline = function buildPolyline(geojson) {
   if (geojson.length === 1) {
     var _geojson = _slicedToArray(geojson, 1),
@@ -161,14 +159,9 @@ var Polyline = function () {
       return milesToKm(this.getLengthInMiles());
     }
   }, {
-    key: 'getPointAtProp',
-    value: function getPointAtProp(prop) {
-      return linearSearcher(this.polyline, prop);
-    }
-  }, {
     key: 'getPointCovering',
     value: function getPointCovering(percent) {
-      return this.getPointAtProp(percent);
+      return linearSearcher(this.polyline, percent);
     }
   }], [{
     key: 'getDistanceBetweenPoints',
