@@ -43,8 +43,8 @@ polyline specified.
 For example `.getPointCovering(0.5)` will return the coordinates of the point
 that is located in the middle of the polyline.
 
-### Polyline.getDistanceBetweenPoints(start, end)
+#### Polyline.getDistanceBetweenPoints(start, end)
 Returns the distance in miles between two coordinates.
 
-### Polyline.getDistanceBetweenPointsKm(start, end)
+#### Polyline.getDistanceBetweenPointsKm(start, end)
 Returns the distance in kilometers between two coordinates.
