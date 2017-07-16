@@ -10,26 +10,27 @@ Simple utility library for dealing with JSON polylines
 
 ## Usage
 ```js
-var Polyline = require('polyline-coordinates');
+const Polyline = require('polyline-coordinates');
 
 // the polyline needs to be an array of [latitude, longitude] values
-var polyline = new Polyline([[0,0], [20,20], [40, 40], [60, 60], [80,80], [100, 100]]);
+const polyline = new Polyline([[34.028337, -118.259954], [37.773566, -122.412786]])
 
-polyline.getTotalDist();
-// 100
+polyline.getLengthInMiles()
+// 347.618 miles
+
+polyline.getLengthInKm()
+// 559.43555212 km
 
 polyline.getPointCovering(0.5);
-// [50, 50]
-
-polyline.getPointCovering(1.0);
-// [100, 100]
+// [35.91355, 120.33155]
 ```
 
 ## API
+
 #### Polyline(geojson)
 Creates a new polyline instance with the json representation of a polyline.
 
-#### getLengthInMiles()
+#### .getLengthInMiles()
 Returns the total distance covered by the polyline in miles.
 
 #### .getLengthInKm()
@@ -41,3 +42,9 @@ polyline specified.
 
 For example `.getPointCovering(0.5)` will return the coordinates of the point
 that is located in the middle of the polyline.
+
+### Polyline.getDistanceBetweenPoints(start, end)
+Returns the distance in miles between two coordinates.
+
+### Polyline.getDistanceBetweenPointsKm(start, end)
+Returns the distance in kilometers between two coordinates.
