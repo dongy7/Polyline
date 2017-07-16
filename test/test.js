@@ -37,23 +37,32 @@ test('builds polyline correctly', () => {
 })
 
 test('gets the length of the polyline in miles', () => {
-  const polyline = new Polyline([[37.7749, 122.4194], [34.0522, 118.2437]])
+  const polyline = Polyline.createLine([
+    [37.7749, 122.4194],
+    [34.0522, 118.2437],
+  ])
   expect(polyline.getLengthInMiles()).toMatchSnapshot()
 })
 
 test('gets the length of the polyline in kilometers', () => {
-  const polyline = new Polyline([[37.7749, 122.4194], [34.0522, 118.2437]])
+  const polyline = Polyline.createLine([
+    [37.7749, 122.4194],
+    [34.0522, 118.2437],
+  ])
   expect(polyline.getLengthInKm()).toMatchSnapshot()
 })
 
 test('computes the midpoint of the polyline', () => {
-  const polyline = new Polyline([[37.7749, 122.4194], [34.0522, 118.2437]])
+  const polyline = Polyline.createLine([
+    [37.7749, 122.4194],
+    [34.0522, 118.2437],
+  ])
   const midpoint = polyline.getPointCovering(0.5)
   expect(midpoint).toMatchSnapshot()
 })
 
 test('computes arbitrary point of polyline', () => {
-  const polyline = new Polyline([
+  const polyline = Polyline.createLine([
     [34.028337, -118.259954],
     [37.773566, -122.412786],
   ])
@@ -64,7 +73,7 @@ test('computes arbitrary point of polyline', () => {
 })
 
 test('computes arbitray point of polyline with more than 2 segmenrs', () => {
-  const polyline = new Polyline([
+  const polyline = Polyline.createLine([
     [34.028337, -118.259954],
     [37.334748, -121.853123],
     [37.773566, -122.412786],
