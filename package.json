@@ -12,7 +12,8 @@
     "lint": "eslint src test"
   },
   "files": [
-    "typings"
+    "typings",
+    "dist"
   ],
   "babel": {
     "presets": [
