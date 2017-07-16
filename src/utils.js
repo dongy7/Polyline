@@ -15,15 +15,6 @@ export type Polyline = {
   mileLength: number,
 }
 export type Searcher = (polyline: Polyline, percent: number) => Coordinate
-export type CartesianPoint = {
-  x: number,
-  y: number,
-  z: number,
-}
-export type CartesianPair = {
-  start: CartesianPoint,
-  end: CartesianPoint,
-}
 
 // kilometers per mile
 const kiloPerMile = 1.60934
@@ -31,12 +22,12 @@ const kiloPerMile = 1.60934
 // radius or earth in miles
 const earthRadius = 3961
 
-const square = (x: number) => x * x
+export const square = (x: number) => x * x
 
 // rounds to the nearest thousandth digit
-const round = (n: number) => Math.round(n * 1000) / 1000
+export const round = (n: number) => Math.round(n * 1000) / 1000
 
-const getEuclideanDist: DistFunc = (a: Coordinate, b: Coordinate) => {
+export const getEuclideanDist: DistFunc = (a: Coordinate, b: Coordinate) => {
   const squaredDistance = square(a[0] - b[0]) + square(a[1] - b[1])
   return Math.sqrt(squaredDistance)
 }
@@ -44,7 +35,7 @@ const getEuclideanDist: DistFunc = (a: Coordinate, b: Coordinate) => {
 const degreeToRad = (degree: number) => degree * (Math.PI / 180)
 
 // get the distance in miles between two coordinates
-const getMileDist: DistFunc = (start: Coordinate, end: Coordinate) => {
+export const getMileDist: DistFunc = (start: Coordinate, end: Coordinate) => {
   const startInRadians = start.map(degree => degreeToRad(degree))
   const endInRadians = end.map(degree => degreeToRad(degree))
   const [startLatitude, startLongitude] = startInRadians
@@ -61,9 +52,9 @@ const getMileDist: DistFunc = (start: Coordinate, end: Coordinate) => {
   return round(earthRadius * c)
 }
 
-const milesToKm = (mile: number) => mile * kiloPerMile
+export const milesToKm = (mile: number) => mile * kiloPerMile
 
-const getPolylineDistance = (
+export const getPolylineDistance = (
   line: Line,
   distFunc: DistFunc = getEuclideanDist
 ) =>
@@ -76,7 +67,7 @@ const getPolylineDistance = (
     return distance + distFunc(prevPoint, point)
   }, 0)
 
-const buildPolyline = (geojson: Line): Polyline => {
+export const buildPolyline = (geojson: Line): Polyline => {
   if (geojson.length === 1) {
     const [start] = geojson
     return {
@@ -128,7 +119,7 @@ const getInterpolatedPoint = (
   return [startLat + offsetX, startLong + offsetY]
 }
 
-const linearSearcher: Searcher = (
+export const linearSearcher: Searcher = (
   polyline: Polyline,
   percent: number
 ): Coordinate => {
@@ -155,16 +146,4 @@ const linearSearcher: Searcher = (
     segment.mileDistance / mileLength,
     percentRemaining
   )
-}
-
-module.exports = {
-  round,
-  square,
-  getEuclideanDist,
-  degreeToRad,
-  milesToKm,
-  getPolylineDistance,
-  getMileDist,
-  buildPolyline,
-  linearSearcher,
 }
