@@ -54,19 +54,6 @@ export const getMileDist: DistFunc = (start: Coordinate, end: Coordinate) => {
 
 export const milesToKm = (mile: number) => mile * kiloPerMile
 
-export const getPolylineDistance = (
-  line: Line,
-  distFunc: DistFunc = getEuclideanDist
-) =>
-  line.reduce((distance, point, index) => {
-    if (index === 0) {
-      return distance
-    }
-
-    const prevPoint = line[index - 1]
-    return distance + distFunc(prevPoint, point)
-  }, 0)
-
 export const buildPolyline = (geojson: Line): Polyline => {
   if (geojson.length === 1) {
     const [start] = geojson
